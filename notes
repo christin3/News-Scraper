@@ -1,0 +1,30 @@
+request("http://www.sputnikmusic.com/", function(error, response, html) {
+
+    var $ = cheerio.load(html);
+
+    var results = [];
+
+    var tooltips = $("a.tooltip");
+
+    console.log(tooltips.length);
+
+    // grabbing links on the sidebar
+    tooltips.each(function(i, element) {
+
+      var result = {};
+
+      // Add the text and href of every link, and save them as properties of the result object
+      result.title = $(this).text();
+      result.link = $(this).attr("href");
+
+      console.log(result);
+      results.push(result);
+  });
+});
+
+
+//line 7 grabs the corres. html from the site line 60 of server.js
+
+
+
+add delete route
