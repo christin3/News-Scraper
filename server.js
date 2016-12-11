@@ -97,6 +97,8 @@ app.get("/scrape", function (req, res) {
     res.redirect(200,'/');
 
 
+
+
 });
 
 // This will get the articles we scraped from the mongoDB
@@ -169,35 +171,36 @@ app.delete("/articles/:id", function (req, res) {
     //remove the note from the collection
     Article.update({"_id": req.params.id},{$unset :{note:"$oid"}}, function(error, response) {
         // Log any errors to the console
-        if (error) {
-            console.log(error);
-            res.send(error);
-        }
-        // Otherwise, send the mongojs response to the browser
-        // This will fire off the success function of the ajax request
-        else {
-            console.log(response);
-            res.send(response);
-        }
-    });
-
-
-    Note.remove({}, function(error, response) {
-        // Log any errors to the console
-        if (error) {
-            console.log(error);
-            res.send(error);
-        }
-        // Otherwise, send the mongojs response to the browser
-        // This will fire off the success function of the ajax request
-        else {
-            console.log(response);
-            res.send(response);
-        }
+        // if (error) {
+        //     console.log(error);
+        //     res.send(error);
+        // }
+        // // Otherwise, send the mongojs response to the browser
+        // // This will fire off the success function of the ajax request
+        // else {
+        //     console.log(response);
+        //     res.send(response);
+        // }
     });
 
 
 });
+
+Article.remove({}, function(error, response) {
+    //     // Log any errors to the console
+    //     if (error) {
+    //         console.log(error);
+    //         res.send(error);
+    //     }
+    //     // Otherwise, send the mongojs response to the browser
+    //     // This will fire off the success function of the ajax request
+    //     else {
+    //         console.log(response);
+    //         res.send(response);
+    //     }
+});
+
+
 
 
 // Listen on port 3000

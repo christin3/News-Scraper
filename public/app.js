@@ -1,15 +1,19 @@
 // Grab the articles as a json
 $.getJSON("/articles", function (data) {
+
+    $("#articles").append("<button id='clearDB'> Clear Articles </button>");
     // For each one
     for (var i = 0; i < data.length; i++) {
         // Display the apropos information on the page
         $("#articles").append("<div id='article'>"+"<h5 data-id='" + data[i]._id + "'>" + data[i].title +"</h5>" +"<p>"+ data[i].link + "</p>"+"</div>" + "<br>");
+
     }
 });
 
 
 // Whenever someone clicks a p tag
 $(document).on("click", "h5", function () {
+
     // Empty the notes from the note section
     $("#notes").empty();
     // Save the id from the p tag
@@ -92,4 +96,24 @@ $(document).on("click", "#deletenote", function () {
     // Also, remove the values entered in the input and textarea for note entry
     $("#titleinput").val("");
     $("#bodyinput").val("");
+});
+
+$(document).on("click", "#clearDB", function () {
+    // Grab the id associated with the article from the delete button
+    var thisId = $(this).attr("data-id");
+
+    // Run a POST request to change the note, using what's entered in the inputs
+    $.ajax({
+        method: "DELETE",
+        url: "/articles/" + thisId,
+    })
+    // With that done
+        .done(function (data) {
+            // Log the response
+            console.log(data);
+        });
+
+    $("#articles").empty();
+
+
 });
