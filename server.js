@@ -15,6 +15,7 @@ var request = require("request");
 var cheerio = require("cheerio");
 // Mongoose mpromise deprecated - use bluebird promises
 var Promise = require("bluebird");
+var PORT = process.env.PORT || 3000;
 
 mongoose.Promise = Promise;
 
@@ -200,6 +201,7 @@ app.delete("/articles/:id", function (req, res) {
 
 
 // Listen on port 3000
-app.listen(3000, function () {
-    console.log("App running on port 3000!");
+app.listen(PORT, function () {
+    console.log('App listening on PORT ' + PORT);
 });
+
