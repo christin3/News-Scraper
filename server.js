@@ -57,7 +57,7 @@ app.get("/", function (req, res) {
 // A GET request to scrape the echojs website
 app.get("/scrape", function (req, res) {
     // First, we grab the body of the html with request
-    request("https://www.reddit.com/r/webdev", function (error, response, html) {
+    request("https://www.reddit.com/r/worldnews/", function (error, response, html) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         var $ = cheerio.load(html);
         // Now, we grab every h2 within an article tag, and do the following:
@@ -93,7 +93,9 @@ app.get("/scrape", function (req, res) {
         });
     });
     // Tell the browser that we finished scraping the text
-    res.send("Scrape Complete");
+    res.redirect(200,'/');
+
+
 });
 
 // This will get the articles we scraped from the mongoDB
@@ -163,6 +165,7 @@ app.post("/articles/:id", function (req, res) {
 
 
 app.delete("/articles/:id", function (req, res) {
+    //remove the note from the collection
     Article.update({"_id": req.params.id},{$unset :{note:"$oid"}}, function(error, response) {
         // Log any errors to the console
         if (error) {
@@ -177,20 +180,20 @@ app.delete("/articles/:id", function (req, res) {
         }
     });
 
-    //
-    // Note.update({"_id": req.params.id},{$unset :{_id:"$oid"}}, function(error, response) {
-    //     // Log any errors to the console
-    //     if (error) {
-    //         console.log(error);
-    //         res.send(error);
-    //     }
-    //     // Otherwise, send the mongojs response to the browser
-    //     // This will fire off the success function of the ajax request
-    //     else {
-    //         console.log(response);
-    //         res.send(response);
-    //     }
-    // });
+
+    Note.remove({}, function(error, response) {
+        // Log any errors to the console
+        if (error) {
+            console.log(error);
+            res.send(error);
+        }
+        // Otherwise, send the mongojs response to the browser
+        // This will fire off the success function of the ajax request
+        else {
+            console.log(response);
+            res.send(response);
+        }
+    });
 
 
 });

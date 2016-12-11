@@ -1,36 +1,71 @@
 
-body { background-color: #F2F6D0 }
-#wrapper {
+body {
+    background-color: lavender;
+    /*background-image: url("/notepad.jpg");*/
+    background-repeat: no-repeat;
+    background-size:cover;
+
+
+
+
+}
+
+#container {
     width: 960px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 5%;
+
 }
+
 #articles {
     display: inline-block;
     overflow: auto;
     width: 60%;
     height: 700px;
+    font-size: small;
+    font-family: 'Raleway', sans-serif;
+
+
 }
+
 #notes {
     float: right;
     width: 30%;
+    font-size: small;
+    font-family: 'Raleway', sans-serif;
 }
+
 textarea, input {
     display: block;
     width: 100%;
-    background-color: #FCF5C7;
+    background-color: aliceblue;
 }
+
 input {
     height: 36px;
     font-size: 24px;
 }
+
 textarea {
     height: 200px;
-    font-size: 18px;
+    font-size: 12px;
 }
 
-#article{
-    border: dotted;
+#article {
+border: inset;
 }
+
+#font {
+    font-family: 'Homemade Apple',
+    cursive;
+    font-size: 38pt;
+
+}
+
+h5{
+    font-family: 'Raleway', sans-serif;
+}
+
+
 
