@@ -15,7 +15,7 @@ var request = require("request");
 var cheerio = require("cheerio");
 // Mongoose mpromise deprecated - use bluebird promises
 var Promise = require("bluebird");
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT;
 
 mongoose.Promise = Promise;
 
