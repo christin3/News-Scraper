@@ -71,23 +71,12 @@ app.get("/scrape", function (req, res) {
             result.title = $(this).text();
             result.link = $(this).children("a").attr("href");
 
-            console.log(result);
 
-
-            // Using our Article model, create a new entry
-            // This effectively passes the result object to the entry (and the title and link)
             var entry = new Article(result);
 
             // Now, save that entry to the db
-            entry.save(function (err, doc) {
-                // Log any errors
-                if (err) {
-                    console.log(err);
-                }
-                // Or log the doc
-                else {
-                    console.log(doc);
-                }
+            entry.save(function () {
+
             });
 
         });
