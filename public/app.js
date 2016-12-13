@@ -4,7 +4,7 @@ $.getJSON("/articles", function (data) {
     // For each one
     for (var i = 0; i < data.length; i++) {
         // Display the apropos information on the page
-        $("#articles").append("<div id='article'>"+"<h6 data-id='" + data[i]._id + "'>" + data[i].title +"</h6>" +"<p>"+ data[i].link + "</p>"+"</div>" + "<br>");
+        $("#articles").append("<div id='article'>"+"<h6 data-id='" + data[i]._id + "'>" + data[i].title +"</h6>" +"<div class='hover_img'>" + "<a target='_blank' href='"+ data[i].link + "'>"+data[i].link+"</a>"+"</div>" +"</div>" + "<br>");
     }
 });
 
