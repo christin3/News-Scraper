@@ -17,7 +17,15 @@
     <h1 id="font" style="text-align: center">Note Scraper</h1>
     <h5 style="text-align: center"> Get the Front Page of the World News !</h5>
 
-    <h5 class="animated swing" id="font3" style="text-align: center" ><a href="http://localhost:3000/scrape">Click me to
+    <div class="subReddit">
+    <form method="get" action="/scrape">
+        <input type="text" name="subReddit"/>
+        <button type="submit" id="subReddit" >Submit </button>
+    </form>
+    </div>
+
+
+    <h5 class="animated swing" id="font3" style="text-align: center" ><a href="/scrape">Click me to
         Scrape! </a></h5>
 
 
@@ -38,6 +46,11 @@
 </div>
 <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 <script src="app.js"></script>
+
+<script src="/public/index.html"></script>
+<script src="/server.js"></script>
+
 </body>
 </html>
+
 

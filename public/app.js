@@ -12,7 +12,8 @@ $.getJSON("/articles", function (data) {
 
 
 // Whenever someone clicks a p tag
-$(document).on("click", "h5", function () {
+$(document).on("click", "h6", function () {
+    alert("Test");
 
     // Empty the notes from the note section
     $("#notes").empty();
@@ -28,7 +29,7 @@ $(document).on("click", "h5", function () {
         .done(function (data) {
             console.log(data);
             // The title of the article
-            $("#notes").append("<h5 >" + data.title + "</h5>");
+            $("#notes").append("<h6 >" + data.title + "</h6>");
             // An input to enter a new title
             $("#notes").append("<input id='titleinput' name='title' placeholder= 'Name' >");
             // A textarea to add a new note body

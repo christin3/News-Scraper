@@ -1,7 +1,3 @@
-/* Showing Mongoose's "Populated" Method (18.3.8)
- * INSTRUCTOR ONLY
- * =============================================== */
-
 // Dependencies
 var express = require("express");
 var bodyParser = require("body-parser");
@@ -16,8 +12,8 @@ var cheerio = require("cheerio");
 // Mongoose mpromise deprecated - use bluebird promises
 var Promise = require("bluebird");
 var PORT = process.env.PORT || 3000;
-
 mongoose.Promise = Promise;
+var rp = require('request-promise');
 
 
 // Initialize Express
@@ -53,12 +49,16 @@ db.once("open", function () {
 // Simple index route
 app.get("/", function (req, res) {
     res.send(index.html);
+
 });
 
 // A GET request to scrape the echojs website
 app.get("/scrape", function (req, res) {
+
+    var subReddit = req.query.subReddit;
+
     // First, we grab the body of the html with request
-    request("https://www.reddit.com/r/worldnews/", function (error, response, html) {
+   rp("https://www.reddit.com/r/" + subReddit, function (error, response, html) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         var $ = cheerio.load(html);
         // Now, we grab every h2 within an article tag, and do the following:
@@ -83,20 +83,18 @@ app.get("/scrape", function (req, res) {
             entry.save(function (err, doc) {
                 // Log any errors
                 if (err) {
-                    console.log(err);
+                    console.log("error #" + i+ ":"+err);
                 }
                 // Or log the doc
                 else {
-                    console.log(doc);
+                    console.log("success #" +i+ ":"+doc);
                 }
             });
 
         });
-    });
-    // Tell the browser that we finished scraping the text
-    res.redirect(200,'/');
-
-
+    }).then('end', function() {
+       res.redirect('/')
+   });
 
 
 });
@@ -169,7 +167,7 @@ app.post("/articles/:id", function (req, res) {
 
 app.delete("/articles/:id", function (req, res) {
     //remove the note from the collection
-    Article.update({"_id": req.params.id},{$unset :{note:"$oid"}}, function(error, response) {
+    Article.update({"_id": req.params.id}, {$unset: {note: "$oid"}}, function (error, response) {
         // Log any errors to the console
         // if (error) {
         //     console.log(error);
@@ -183,23 +181,21 @@ app.delete("/articles/:id", function (req, res) {
         // }
     });
 
+    Article.remove({}, function (error, response) {
+        //     // Log any errors to the console
+        //     if (error) {
+        //         console.log(error);
+        //         res.send(error);
+        //     }
+        //     // Otherwise, send the mongojs response to the browser
+        //     // This will fire off the success function of the ajax request
+        //     else {
+        //         console.log(response);
+        //         res.send(response);
+        //     }
+    });
 
 });
-
-Article.remove({}, function(error, response) {
-    //     // Log any errors to the console
-    //     if (error) {
-    //         console.log(error);
-    //         res.send(error);
-    //     }
-    //     // Otherwise, send the mongojs response to the browser
-    //     // This will fire off the success function of the ajax request
-    //     else {
-    //         console.log(response);
-    //         res.send(response);
-    //     }
-});
-
 
 
 
