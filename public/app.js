@@ -1,19 +1,15 @@
 // Grab the articles as a json
+$("#articles").append("<button id='clearDB'> Clear Articles </button>");
 $.getJSON("/articles", function (data) {
-
-    $("#articles").append("<button id='clearDB'> Clear Articles </button>");
     // For each one
     for (var i = 0; i < data.length; i++) {
         // Display the apropos information on the page
         $("#articles").append("<div id='article'>"+"<h5 data-id='" + data[i]._id + "'>" + data[i].title +"</h5>" +"<p>"+ data[i].link + "</p>"+"</div>" + "<br>");
-
     }
 });
 
-
-// Whenever someone clicks a p tag
 $(document).on("click", "h6", function () {
-    alert("Test");
+
 
     // Empty the notes from the note section
     $("#notes").empty();

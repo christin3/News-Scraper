@@ -3,6 +3,8 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var rp = require('request-promise');
+var PORT = process.env.PORT || 3000;
 // Requiring our Note and Article models
 var Note = require("./models/Note.js");
 var Article = require("./models/Article.js");
@@ -11,10 +13,8 @@ var request = require("request");
 var cheerio = require("cheerio");
 // Mongoose mpromise deprecated - use bluebird promises
 var Promise = require("bluebird");
-var PORT = process.env.PORT || 3000;
-mongoose.Promise = Promise;
-var rp = require('request-promise');
 
+mongoose.Promise = Promise;
 
 // Initialize Express
 var app = express();
@@ -52,7 +52,7 @@ app.get("/", function (req, res) {
 
 });
 
-// A GET request to scrape the echojs website
+// A GET request to scrape
 app.get("/scrape", function (req, res) {
 
     var subReddit = req.query.subReddit;
@@ -66,7 +66,6 @@ app.get("/scrape", function (req, res) {
 
             // Save an empty result object
             var result = {};
-
 
             // Add the text and href of every link, and save them as properties of the result object
             result.title = $(this).text();
@@ -83,21 +82,26 @@ app.get("/scrape", function (req, res) {
             entry.save(function (err, doc) {
                 // Log any errors
                 if (err) {
-                    console.log("error #" + i+ ":"+err);
+                    console.log(err);
                 }
                 // Or log the doc
                 else {
-                    console.log("success #" +i+ ":"+doc);
+                    console.log(doc);
                 }
             });
 
         });
-    }).then('end', function() {
+    }).then(function() {
        res.redirect('/')
-   });
+   })
+       .catch(function (err) {
+          console.log(err);
+       });
 
 
 });
+
+//articles is being undefined,
 
 // This will get the articles we scraped from the mongoDB
 app.get("/articles", function (req, res) {
