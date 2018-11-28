@@ -135,6 +135,7 @@
       <find>$(&quot;#articles&quot;).append(&quot;&lt;button id='clearDB'&gt; Clear Articles</find>
       <find>.then</find>
       <find>request</find>
+      <find>/r</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -172,8 +173,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="567" />
-    <option name="y" value="1" />
+    <option name="x" value="659" />
+    <option name="y" value="17" />
     <option name="width" value="1353" />
     <option name="height" value="1200" />
   </component>
