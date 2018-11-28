@@ -18,27 +18,35 @@
     <h5 style="text-align: center"> Scrape any subreddit!</h5>
 
     <div class="subReddit">
-    <form method="GET" action="/scrape">
-        <input type="text" name="subReddit" placeholder="aww, webdev, worldnews"/>
-        <button type="submit" id="subReddit" >Submit </button>
-    </form>
+        <form method="GET" action="/scrape">
+            <input type="text" name="subReddit" placeholder="webdev, worldnews, funny"/>
+            <button type="submit" id="subReddit">Submit</button>
+        </form>
     </div>
 
 
     <div class="row">
-        <div class="col s6"><h5>Articles</h5></div>
-        <div class="col s6"><h5 align="center ">Note Pad.</h5></div>
+        <div class="col s6"><h5>Articles</h5>
+            <p> Links that start withe r/ are not working as of right now. HTTP links do</p>
+        </div>
+        <div class="col s6"><h5 align="center ">Note Pad.</h5>
+        </div>
+
     </div>
 
     <div class="row">
-
         <div class="col s6" id="articles"></div>
-
         <div class="col s6" id="notes">
-
+            <p> Coming Soon.</p>
+                <p>Title</p>
+                <input type="text" id="titleinput"/>
+                <br>
+                <p>Note</p>
+                <textarea id="bodyinput"></textarea>
+                <button type="submit" id="savenote">Save</button>
+                <button type="submit" id="deletenote">Delete</button>
         </div>
     </div>
-
 </div>
 
 <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>

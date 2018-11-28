@@ -6,45 +6,37 @@ var mongoose = require("mongoose");
 //var request = require("request-promise");
 var PORT = process.env.PORT || 3000;
 // Requiring our Note and Article models
-//var Note = require("/Users/christine/Coding /UT Bootcamp/Github/Reddit-Scraper/models/Note.js");
+var Note = require("/Users/christine/Coding /UT Bootcamp/Github/Reddit-Scraper/models/Note.js");
 var Article = require("/Users/christine/Coding /UT Bootcamp/Github/Reddit-Scraper/models/Article.js");
 // Our scraping tools
 var cheerio = require("cheerio");
 var Promise = require("bluebird");
 var request = require("request");
+var rp = require("request-promise");
 
 mongoose.Promise = Promise;
 
 // Initialize Express
 var app = express();
-
 // Use morgan and body parser with our app
 app.use(logger("dev"));
 app.use(bodyParser.urlencoded({
     extended: false
 }));
-
 // Make public a static dir
 app.use(express.static("public"));
-
 // Database configuration with mongoose
 mongoose.connect("mongodb://root:root@ds127948.mlab.com:27948/heroku_qwbvkwbk");
 var db = mongoose.connection;
-
 // Show any mongoose errors
 db.on("error", function (error) {
     console.log("Mongoose Error: ", error);
 });
-
 // Once logged in to the db through mongoose, log a success message
 db.once("open", function () {
     console.log("Mongoose connection successful.");
 });
-
-
 // Routes
-// ======
-
 // Simple index route
 app.get("/", function (req, res) {
     res.send(index.html);
@@ -79,6 +71,8 @@ app.get("/scrape", function (req, result) {
             });
         });
         result.send("Scrape Complete")
+
+        // TODO need to figure out now to auto redirect back to home page and refresh to display the results
         // }).then(function () {
         //     result.redirect('./')
         // }).catch(function (err) {
@@ -126,7 +120,6 @@ app.get("/articles/:id", function (req, res) {
 app.post("/articles/:id", function (req, res) {
     // Create a new note and pass the req.body to the entry
     var newNote = new Note(req.body);
-
     // And save the new note the db
     newNote.save(function (error, doc) {
         // Log any errors
@@ -171,7 +164,6 @@ app.delete("/articles/:id", function (req, res) {
         }
     });
 });
-
 
 // Listen on port 3000
 app.listen(PORT, function () {

@@ -4,6 +4,7 @@ $.getJSON("/articles", function (data) {
     // For each one
     for (var i = 0; i < data.length; i++) {
         // Display the apropos information on the page
+        //TODO figure out how to  handle /r links with URLs
         $("#articles").append("<div id='article'>"+"<h6 data-id='" + data[i]._id + "'>" + data[i].title +"</h6>" +"<div class='hover_img'>" + "<a target='_blank' href='"+ data[i].link + "'>"+data[i].link+"</a>"+"</div>" +"</div>" + "<br>");
     }
 });
@@ -50,7 +51,7 @@ $(document).on("click", "#savenote", function () {
     // Run a POST request to change the note, using what's entered in the inputs
     $.ajax({
         method: "POST",
-        url: "/articles/" + thisId,
+        url: "/notes/" + thisId,
         data: {
             // Value taken from title input
             title: $("#titleinput").val(),
@@ -70,7 +71,6 @@ $(document).on("click", "#savenote", function () {
     $("#titleinput").val("");
     $("#bodyinput").val("");
 });
-
 
 
 $(document).on("click", "#deletenote", function () {
