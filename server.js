@@ -53,9 +53,7 @@ app.get("/", function (req, res) {
 
 // A GET request to scrape
 app.get("/scrape", function (req, result) {
-
     var subReddit = req.query.subReddit;
-
     // First, we grab the body of the html with request
     request("https://old.reddit.com/r/" + subReddit, function (error, response, html) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
@@ -69,15 +67,23 @@ app.get("/scrape", function (req, result) {
             result.link = $(this).children("a").attr("href");
             var entry = new Article(result);
             // Now, save that entry to the db
-            entry.save(function () {
+            entry.save(function (err, doc) {
+                // Log any errors
+                if (err) {
+                    console.log(err);
+                }
+                // Or log the doc
+                else {
+                    console.log(doc);
+                }
             });
         });
-    }).then(function () {
-        result.redirect('./')
-    }).catch(function (err) {
-            console.log(err);
-        });
-
+        result.send("Scrape Complete")
+        // }).then(function () {
+        //     result.redirect('./')
+        // }).catch(function (err) {
+        //     console.log(err);
+    });
 });
 //articles is being undefined,
 // This will get the articles we scraped from the mongoDB
@@ -112,6 +118,7 @@ app.get("/articles/:id", function (req, res) {
                 res.json(doc);
             }
         });
+
 });
 
 
@@ -143,46 +150,30 @@ app.post("/articles/:id", function (req, res) {
                 });
         }
     });
-});//     });
-// });
+});
 
 app.delete("/articles/:id", function (req, res) {
     //remove the note from the collection
     Article.update({"_id": req.params.id}, {$unset: {note: "$oid"}}, function (error, response) {
-        // Log any errors to the console
+    });
+
+    Article.remove({}, function (error, response) {
+        //     // Log any errors to the console
         if (error) {
             console.log(error);
             res.send(error);
         }
-        // Otherwise, send the mongojs response to the browser
-        // This will fire off the success function of the ajax request
+        //     // Otherwise, send the mongojs response to the browser
+        //     // This will fire off the success function of the ajax request
         else {
             console.log(response);
             res.send(response);
         }
     });
-
-    Article.remove({}, function (error, response) {
-        //     // Log any errors to the console
-            if (error) {
-                console.log(error);
-                res.send(error);
-            }
-        //     // Otherwise, send the mongojs response to the browser
-        //     // This will fire off the success function of the ajax request
-            else {
-                console.log(response);
-                res.send(response);
-            }
-    });
-
 });
-
-
 
 
 // Listen on port 3000
 app.listen(PORT, function () {
     console.log('App listening on PORT ' + PORT);
 });
-
