@@ -6,7 +6,7 @@ var mongoose = require("mongoose");
 //var request = require("request-promise");
 var PORT = process.env.PORT || 3000;
 // Requiring our Note and Article models
-var Note = require("/Users/christine/Coding /UT Bootcamp/Github/Reddit-Scraper/models/Note.js");
+//var Note = require("/Users/christine/Coding /UT Bootcamp/Github/Reddit-Scraper/models/Note.js");
 var Article = require("/Users/christine/Coding /UT Bootcamp/Github/Reddit-Scraper/models/Article.js");
 // Our scraping tools
 var cheerio = require("cheerio");
