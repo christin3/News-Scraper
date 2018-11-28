@@ -1,4 +1,5 @@
-{"name": "mongoose_skeleton",
+{
+  "name": "mongoose_skeleton",
   "version": "1.0.0",
   "description": "You can now scrape any subreddit!",
   "main": "server.js",
@@ -18,7 +19,9 @@
     "request": "^2.79.0",
     "request-promise": "^4.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "dotenv": "^6.1.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/christin3/Reddit-Scraper.git"
