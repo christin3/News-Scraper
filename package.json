@@ -1,7 +1,7 @@
 {
   "name": "mongoose_skeleton",
   "version": "1.0.0",
-  "description": "You can now scrape any subreddit!",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,20 +18,5 @@
     "morgan": "^1.7.0",
     "request": "^2.79.0",
     "request-promise": "^4.1.1"
-  },
-  "devDependencies": {
-    "dotenv": "^6.1.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/christin3/Reddit-Scraper.git"
-  },
-  "keywords": [
-    "scraper",
-    "reddit"
-  ],
-  "bugs": {
-    "url": "https://github.com/christin3/Reddit-Scraper/issues"
-  },
-  "homepage": "https://github.com/christin3/Reddit-Scraper#readme"
+  }
 }

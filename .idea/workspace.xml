@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="90b0297c-0b20-4f45-96f5-8a800decffeb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="90b0297c-0b20-4f45-96f5-8a800decffeb" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,8 +81,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+            <state relative-caret-position="189">
+              <caret line="9" selection-start-line="9" selection-end-line="10" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -186,7 +184,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="278" />
+    <option name="x" value="925" />
+    <option name="y" value="15" />
     <option name="width" value="1577" />
     <option name="height" value="1200" />
   </component>
@@ -393,18 +392,18 @@
       <workItem from="1543428628028" duration="918000" />
       <workItem from="1543432313822" duration="1925000" />
       <workItem from="1543435095706" duration="4031000" />
-      <workItem from="1543439760591" duration="6052000" />
+      <workItem from="1543439760591" duration="6228000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66138000" />
+    <option name="totallyTimeSpent" value="66314000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="278" y="0" width="1577" height="1200" extended-state="0" />
+    <frame x="925" y="15" width="1577" height="1200" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1704918" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1704918" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -417,7 +416,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32959852" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49371633" visible="true" weight="0.356676" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49371633" visible="true" weight="0.356676" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50628364" side_tool="true" weight="0.1992966" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -542,8 +541,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+        <state relative-caret-position="189">
+          <caret line="9" selection-start-line="9" selection-end-line="10" selection-end-column="19" />
         </state>
       </provider>
     </entry>
