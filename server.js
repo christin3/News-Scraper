@@ -6,8 +6,8 @@ var mongoose = require("mongoose");
 var rp = require('request-promise');
 var PORT = process.env.PORT || 3000;
 // Requiring our Note and Article models
-var Note = require("/Note.js");
-var Article = require("/Article.js");
+var Note = require("/Users/christine/Coding /UT Bootcamp/Github/Reddit-Scraper/note.js");
+var Article = require("/Users/christine/Coding /UT Bootcamp/Github/Reddit-Scraper/article.js");
 // Our scraping tools
 var request = require("request");
 var cheerio = require("cheerio");
@@ -58,7 +58,7 @@ app.get("/scrape", function (req, res) {
     var subReddit = req.query.subReddit;
 
     // First, we grab the body of the html with request
-   rp("https://www.reddit.com/r/" + subReddit, function (error, response, html) {
+   rp("old.reddit.com/r/" + subReddit, function (error, response, html) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         var $ = cheerio.load(html);
         // Now, we grab every h2 within an article tag, and do the following:
