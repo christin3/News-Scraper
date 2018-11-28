@@ -6,8 +6,8 @@ var mongoose = require("mongoose");
 //var request = require("request-promise");
 var PORT = process.env.PORT || 3000;
 // Requiring our Note and Article models
-var Note = require("/Users/christine/Coding /UT Bootcamp/Github/Reddit-Scraper/models/Note.js");
-var Article = require("/Users/christine/Coding /UT Bootcamp/Github/Reddit-Scraper/models/Article.js");
+//var Note = require("/Users/christine/Coding /UT Bootcamp/Github/Reddit-Scraper/models/Note.js");
+//var Article = require("/Users/christine/Coding /UT Bootcamp/Github/Reddit-Scraper/models/Article.js");
 // Our scraping tools
 var cheerio = require("cheerio");
 var Promise = require("bluebird");
@@ -117,53 +117,53 @@ app.get("/articles/:id", function (req, res) {
 
 
 // Create a new note or replace an existing note
-app.post("/articles/:id", function (req, res) {
-    // Create a new note and pass the req.body to the entry
-    var newNote = new Note(req.body);
-    // And save the new note the db
-    newNote.save(function (error, doc) {
-        // Log any errors
-        if (error) {
-            console.log(error);
-        }
-        // Otherwise
-        else {
-            // Use the article id to find and update it's note
-            Article.findOneAndUpdate({"_id": req.params.id}, {"note": doc._id})
-            // Execute the above query
-                .exec(function (err, doc) {
-                    // Log any errors
-                    if (err) {
-                        console.log(err);
-                    }
-                    else {
-                        // Or send the document to the browser
-                        res.send(doc);
-                    }
-                });
-        }
-    });
-});
+// app.post("/articles/:id", function (req, res) {
+//     // Create a new note and pass the req.body to the entry
+//     var newNote = new Note(req.body);
+//     // And save the new note the db
+//     newNote.save(function (error, doc) {
+//         // Log any errors
+//         if (error) {
+//             console.log(error);
+//         }
+//         // Otherwise
+//         else {
+//             // Use the article id to find and update it's note
+//             Article.findOneAndUpdate({"_id": req.params.id}, {"note": doc._id})
+//             // Execute the above query
+//                 .exec(function (err, doc) {
+//                     // Log any errors
+//                     if (err) {
+//                         console.log(err);
+//                     }
+//                     else {
+//                         // Or send the document to the browser
+//                         res.send(doc);
+//                     }
+//                 });
+//         }
+//     });
+// });
 
-app.delete("/articles/:id", function (req, res) {
-    //remove the note from the collection
-    Article.update({"_id": req.params.id}, {$unset: {note: "$oid"}}, function (error, response) {
-    });
-
-    Article.remove({}, function (error, response) {
-        //     // Log any errors to the console
-        if (error) {
-            console.log(error);
-            res.send(error);
-        }
-        //     // Otherwise, send the mongojs response to the browser
-        //     // This will fire off the success function of the ajax request
-        else {
-            console.log(response);
-            res.send(response);
-        }
-    });
-});
+// app.delete("/articles/:id", function (req, res) {
+//     //remove the note from the collection
+//     Article.update({"_id": req.params.id}, {$unset: {note: "$oid"}}, function (error, response) {
+//     });
+//
+//     Article.remove({}, function (error, response) {
+//         //     // Log any errors to the console
+//         if (error) {
+//             console.log(error);
+//             res.send(error);
+//         }
+//         //     // Otherwise, send the mongojs response to the browser
+//         //     // This will fire off the success function of the ajax request
+//         else {
+//             console.log(response);
+//             res.send(response);
+//         }
+//     });
+// });
 
 // Listen on port 3000
 app.listen(PORT, function () {
